@@ -5,7 +5,6 @@ class FixedAnimation extends BadgeAnimation {
   void processAnimation(int badgeHeight, int badgeWidth, int animationIndex,
       List<List<bool>> processGrid, List<List<bool>> canvas) {
     int newWidth = processGrid[0].length;
-    int newHeight = processGrid.length;
     int horizontalOffset = (badgeWidth - newWidth) ~/ 2;
 
     for (int i = 0; i < badgeHeight; i++) {
