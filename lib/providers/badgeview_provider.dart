@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:badgemagic/badge_animation/ani_left.dart';
 import 'package:badgemagic/badge_animation/ani_right.dart';
+import 'package:badgemagic/badge_animation/ani_up.dart';
 import 'package:badgemagic/badge_animation/animation_abstract.dart';
 import 'package:badgemagic/constants.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +96,7 @@ class DrawBadgeProvider extends ChangeNotifier {
   Map<int, BadgeAnimation?> animationMap = {
     0: LeftAnimation(),
     1: RightAnimation(),
-    // 2: UpAnimation(),
+    2: UpAnimation(),
     // 3: DownAnimation(),
     // 4: FixedAnimation(),
     // 5: SnowFlakeAnimation(),
