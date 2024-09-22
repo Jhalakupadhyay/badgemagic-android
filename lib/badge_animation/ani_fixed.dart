@@ -10,9 +10,7 @@ class FixedAnimation extends BadgeAnimation {
     for (int i = 0; i < badgeHeight; i++) {
       for (int j = 0; j < badgeWidth; j++) {
         int sourceCol = j - horizontalOffset;
-        bool isWithinNewGrid = 
-            sourceCol >= 0 &&
-            sourceCol < newWidth;
+        bool isWithinNewGrid = sourceCol >= 0 && sourceCol < newWidth;
         if (isWithinNewGrid) {
           canvas[i][j] = processGrid[i][sourceCol];
         }
