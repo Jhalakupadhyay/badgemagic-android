@@ -17,11 +17,12 @@ class PictureAnimation extends BadgeAnimation {
       for (int row = badgeHeight - 1; row >= 0; row--) {
         int fallPosition = frame - (badgeHeight - 1 - row) * 2;
         int stoppingPosition = row;
-        fallPosition = fallPosition >= stoppingPosition ? stoppingPosition : fallPosition;
+        fallPosition =
+            fallPosition >= stoppingPosition ? stoppingPosition : fallPosition;
 
         if (fallPosition >= 0 && fallPosition < badgeHeight) {
           for (int col = 0; col < badgeWidth; col++) {
-            int sourceCol = col - horizontalOffset; 
+            int sourceCol = col - horizontalOffset;
             bool isWithinNewGrid = sourceCol >= 0 && sourceCol < newWidth;
             if (isWithinNewGrid) {
               canvas[fallPosition][col] = processGrid[row][sourceCol];
@@ -29,15 +30,15 @@ class PictureAnimation extends BadgeAnimation {
           }
         }
       }
-    }
-    else if (phase2) {
+    } else if (phase2) {
       for (int row = badgeHeight - 1; row >= 0; row--) {
-        int fallOutStartFrame = (badgeHeight - 1 - row) * 2; 
-        int fallOutPosition = row + (frame - badgeHeight * 4 - fallOutStartFrame);
+        int fallOutStartFrame = (badgeHeight - 1 - row) * 2;
+        int fallOutPosition =
+            row + (frame - badgeHeight * 4 - fallOutStartFrame);
 
         if (fallOutPosition < row) {
           for (int col = 0; col < badgeWidth; col++) {
-            int sourceCol = col - horizontalOffset; 
+            int sourceCol = col - horizontalOffset;
             bool isWithinNewGrid = sourceCol >= 0 && sourceCol < newWidth;
             if (isWithinNewGrid) {
               canvas[row][col] = processGrid[row][sourceCol];
