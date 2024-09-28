@@ -1,5 +1,5 @@
 import 'package:badgemagic/providers/badgeview_provider.dart';
-import 'package:badgemagic/virtualbadge/widgets/badge_widget.dart';
+import 'package:badgemagic/virtualbadge/view/badgehome_paint.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -25,9 +25,10 @@ class _BMBadgeHomeState extends State<BMBadgeHome> {
         border: Border.all(color: Colors.black),
         borderRadius: BorderRadius.circular(10),
       ),
-      child: BadgeWidget(
-        grid: grid,
-      ),
+      child: CustomPaint(
+      size: const Size(400, 480),
+      painter: BadgeHomePaint(grid: grid),
+      )
     );
   }
 }
