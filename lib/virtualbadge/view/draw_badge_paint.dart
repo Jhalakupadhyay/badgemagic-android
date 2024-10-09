@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-class DrawBadgePaint extends CustomPainter{
-    final List<List<bool>> grid;
+class DrawBadgePaint extends CustomPainter {
+  final List<List<bool>> grid;
 
-  const DrawBadgePaint( {required this.grid});
+  const DrawBadgePaint({required this.grid});
 
   @override
   void paint(Canvas canvas, Size size) {

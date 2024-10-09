@@ -34,11 +34,10 @@ class _BMBadgeState extends State<BMBadge> {
   Widget build(BuildContext context) {
     final grid = Provider.of<DrawBadgeProvider>(context).getDrawViewGrid();
     return GestureDetector(
-      onPanUpdate: _handlePanUpdate,
-      child: CustomPaint(
-      size: const Size(400, 480),
-      painter: DrawBadgePaint(grid: grid),
-      )
-    );
+        onPanUpdate: _handlePanUpdate,
+        child: CustomPaint(
+          size: const Size(400, 480),
+          painter: DrawBadgePaint(grid: grid),
+        ));
   }
 }
