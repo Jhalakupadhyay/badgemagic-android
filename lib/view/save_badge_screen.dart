@@ -1,10 +1,10 @@
-import 'package:badgemagic/bademagic_module/models/data.dart';
+import 'package:badgemagic/bademagic_module/utils/byte_array_utils.dart';
 import 'package:badgemagic/bademagic_module/utils/file_helper.dart';
 import 'package:badgemagic/constants.dart';
 import 'package:badgemagic/providers/badgeview_provider.dart';
 import 'package:badgemagic/view/widgets/common_scaffold_widget.dart';
 import 'package:badgemagic/view/widgets/saved_badge_listview.dart';
-import 'package:badgemagic/virtualbadge/view/badge_home_view.dart';
+import 'package:badgemagic/virtualbadge/view/saved_badge_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -23,9 +23,13 @@ class _SaveBadgeScreenState extends State<SaveBadgeScreen> {
   void initState() {
     super.initState();
     loadSavedBadges();
-    //set an 2d array to store the badge data aith all false
-    drawBadgeProvider.setNewGrid(
-        List.generate(11, (index) => List.generate(44, (index) => false)));
+  }
+
+  @override
+  void dispose() {
+    logger.i('SaveBadgeScreen Disposed');
+    drawBadgeProvider.stopAllAnimations();
+    super.dispose();
   }
 
   void loadSavedBadges() async {
@@ -51,7 +55,7 @@ class _SaveBadgeScreenState extends State<SaveBadgeScreen> {
           ? const Text("No data Available")
           : Column(
               children: [
-                BMBadgeHome(),
+                SavedBadgeView(),
                 BadgeListView(
                   futureBadges: fileHelper.getBadgeDataFiles(), // Fetch badges
                 ),

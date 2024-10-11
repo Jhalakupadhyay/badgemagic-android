@@ -1,4 +1,3 @@
-import 'package:badgemagic/bademagic_module/models/data.dart';
 import 'package:badgemagic/view/widgets/save_badge_card.dart';
 import 'package:flutter/material.dart';
 
