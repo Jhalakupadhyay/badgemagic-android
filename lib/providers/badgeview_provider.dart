@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:badgemagic/badge_animation/ani_Animation.dart';
 import 'package:badgemagic/badge_animation/ani_down.dart';
 import 'package:badgemagic/badge_animation/ani_fixed.dart';
@@ -38,6 +37,20 @@ class DrawBadgeProvider extends ChangeNotifier {
   }
 
   BadgeAnimation currentAnimation = LeftAnimation();
+
+  void updateDrawViewGrid(List<List<bool>> badgeData) {
+    //copy the badgeData to the drawViewGrid and all the drawViewGrid after badgeData will remain unchanged
+    for (int i = 0; i < drawViewGrid.length; i++) {
+      for (int j = 0; j < drawViewGrid[0].length; j++) {
+        if (j < badgeData[0].length) {
+          drawViewGrid[i][j] = badgeData[i][j];
+        } else {
+          drawViewGrid[i][j] = false;
+        }
+      }
+    }
+    notifyListeners();
+  }
 
   BadgeEffect currentEffect = BadgeEffectImpl([0, 0, 0]);
   //function to update the state of the cell

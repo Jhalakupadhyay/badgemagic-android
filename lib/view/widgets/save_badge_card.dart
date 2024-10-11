@@ -1,7 +1,11 @@
+import 'package:badgemagic/bademagic_module/utils/byte_array_utils.dart';
 import 'package:badgemagic/bademagic_module/utils/converters.dart';
 import 'package:badgemagic/bademagic_module/utils/file_helper.dart';
+import 'package:badgemagic/providers/badgeview_provider.dart';
+import 'package:badgemagic/view/draw_badge_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class SaveBadgeCard extends StatelessWidget {
   final MapEntry<String, Map<String, dynamic>> badgeData;
@@ -14,6 +18,8 @@ class SaveBadgeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DrawBadgeProvider drawBadgeProvider =
+        Provider.of<DrawBadgeProvider>(context);
     return Container(
       width: 370.w,
       padding: EdgeInsets.all(6.dg),
@@ -75,7 +81,17 @@ class SaveBadgeCard extends StatelessWidget {
                       Icons.edit,
                       color: Colors.black,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      drawBadgeProvider.updateDrawViewGrid(hexStringToBool(
+                          file.jsonToData(badgeData).messages[0].text.join()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => DrawBadge(
+                                filename: badgeData.key,
+                                isSavedCard: true,
+                              )));
+                      // Navigator.pushNamed(context, '/drawBadge',
+                      //     arguments: badgeData);
+                    },
                   ),
                   IconButton(
                     icon: Image.asset(

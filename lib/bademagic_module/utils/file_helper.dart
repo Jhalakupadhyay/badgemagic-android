@@ -153,6 +153,52 @@ class FileHelper {
     }
   }
 
+  Future<void> updateBadgeText(String filename, List<String> newText) async {
+    try {
+      // Get the document directory path
+      final directory = await getApplicationDocumentsDirectory();
+      final filePath = '${directory.path}/$filename.json';
+
+      // Check if the file exists
+      File file = File(filePath);
+      if (await file.exists()) {
+        // Read the file's current content
+        String jsonString = await file.readAsString();
+
+        // Parse the JSON data
+        Map<String, dynamic> jsonData = jsonDecode(jsonString);
+
+        // Check if 'messages' exists and is a list
+        if (jsonData.containsKey('messages') && jsonData['messages'] is List) {
+          List<dynamic> messages = jsonData['messages'];
+
+          // Assuming you want to update the first message's 'text'
+          if (messages.isNotEmpty && messages[0] is Map<String, dynamic>) {
+            Map<String, dynamic> message = messages[0];
+
+            // Update the 'text' field with the new text
+            message['text'] = newText;
+
+            // Convert the updated data back to a JSON string
+            String updatedJsonString = jsonEncode(jsonData);
+
+            // Write the updated JSON string back to the file
+            await file.writeAsString(updatedJsonString, mode: FileMode.write);
+            logger.i('Text field updated in $filePath');
+          } else {
+            logger.i('No message found to update.');
+          }
+        } else {
+          logger.i('Invalid JSON structure: No messages found.');
+        }
+      } else {
+        logger.i('File not found: $filePath');
+      }
+    } catch (e) {
+      logger.i('Error updating text: $e');
+    }
+  }
+
   Future<void> saveBadgeData(Data data, String filename) async {
     try {
       // Convert Data object to JSON string
