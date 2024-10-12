@@ -1,4 +1,3 @@
-import 'package:badgemagic/bademagic_module/models/data.dart';
 import 'package:badgemagic/bademagic_module/utils/file_helper.dart';
 import 'package:badgemagic/constants.dart';
 import 'package:badgemagic/providers/badgeview_provider.dart';
@@ -6,6 +5,7 @@ import 'package:badgemagic/view/widgets/common_scaffold_widget.dart';
 import 'package:badgemagic/view/widgets/saved_badge_listview.dart';
 import 'package:badgemagic/virtualbadge/view/badge_home_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 
 class SaveBadgeScreen extends StatefulWidget {
@@ -23,6 +23,12 @@ class _SaveBadgeScreenState extends State<SaveBadgeScreen> {
   void initState() {
     super.initState();
     loadSavedBadges();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
     //set an 2d array to store the badge data aith all false
     drawBadgeProvider.setNewGrid(
         List.generate(11, (index) => List.generate(44, (index) => false)));
