@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:badgemagic/bademagic_module/models/data.dart';
 import 'package:badgemagic/bademagic_module/utils/byte_array_utils.dart';
 import 'package:badgemagic/bademagic_module/utils/data_to_bytearray_converter.dart';
@@ -29,7 +30,6 @@ class Converters {
         if (key is List) {
           String filename = key[0];
           List<dynamic>? decodedData = await fileHelper.readFromFile(filename);
-
           final List<List<dynamic>> image = decodedData!.cast<List<dynamic>>();
           List<List<int>> imageData =
               image.map((list) => list.cast<int>()).toList();
